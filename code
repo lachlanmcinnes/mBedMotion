@@ -1,0 +1,14 @@
+#include "mbed.h"
+AnalogIn IRSensor(p19);
+Serial pc(USBTX, USBRX); // tx, rx
+ 
+int main() {
+    pc.printf("Hello World!\n");
+    while(1) {
+       wait(2);
+       float a = IRSensor;
+       pc.printf("IR sensor reads %2.2f\n ", a);
+       a=1-a;
+       pc.printf("\rDistance is %2.2f cm \n ", (a*26+4));       
+    }
+}
